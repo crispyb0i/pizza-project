@@ -8,8 +8,7 @@ $(document).ready(function(){
     var size = new pizzaSize($("#size").val());
     var defaultToppingsArray = [];
     var premiumToppingsArray = [];
-
-    console.log(size)
+    var defaultChecked = $("input:checkbox[name=topping1]:checked")
 
   //constructor functions
     function defaultTopping(topping) {
@@ -26,10 +25,9 @@ $(document).ready(function(){
 
 
   //prototype functions
-    defaultTopping.prototype.defaultCount = $("input:checkbox[name=topping1]:checked").each(function(){
+    defaultTopping.prototype.defaultCount = $("input:checkbox[name=topping1]:checked").each(function(topping){
         defaultAmount+=1;
       });
-
 
     premiumTopping.prototype.premiumCount = $("input:checkbox[name=topping2]:checked").each(function(){
         premiumAmount+=1;
@@ -64,5 +62,25 @@ $(document).ready(function(){
       }
     }
     $("#receipt").text("Your Total Cost: $" + totalPrice());
+
+    function ingredientsList(){
+      $.each($("input:checkbox[name=topping1]:checked"), function(){
+        defaultToppingsArray.push($(this).val());
+      });
+      $.each($("input:checkbox[name=topping2]:checked"), function(){
+        premiumToppingsArray.push($(this).val());
+      });
+      };
+
+    ingredientsList()
+
+    console.log(defaultToppingsArray)
+
+    function appendDefault(){
+    for(var i=0;i<defaultToppingsArray.length;i++){
+      $("#defaultToppingsReceipt").append("<li>" + defaultToppingsArray[i] + "</li>")
+      }
+    }
+    appendDefault()
   });
 });

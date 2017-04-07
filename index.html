@@ -63,10 +63,21 @@
         <button type="submit" class="btn btn-primary btn-lrg">Submit</button>
       </form>
       <div id="receipt">
-        <ul id="defaultToppingsReceipt">
-        </ul>
-        <ul id="premiumToppingsReceipt">
-        </ul>
+        <div id="header">
+          <h1>Your Receipt:</h1>
+          <h2 id="textAppend"></h2>
+        </div>
+          <div id="left">
+            <p class="receiptDescription">Default Toppings</p>
+            <ul id="defaultToppingsReceipt">
+            </ul>
+          </div>
+        </div>
+        <div id="right">
+          <p class="receiptDescription">Premium Toppings</p>
+          <ul id="premiumToppingsReceipt">
+          </ul>
+        </div>
       </div>
     </div>
   </body>

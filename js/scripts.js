@@ -2,13 +2,14 @@ $(document).ready(function(){
   $("#form").submit(function(event){
     event.preventDefault()
 
+    $("ul").empty();
+
     var defaultAmount = 0;
     var premiumAmount = 0;
     var totalPizzaCost = 0;
     var size = new pizzaSize($("#size").val());
     var defaultToppingsArray = [];
     var premiumToppingsArray = [];
-    var defaultChecked = $("input:checkbox[name=topping1]:checked")
 
   //constructor functions
     function defaultTopping(topping) {
@@ -61,7 +62,7 @@ $(document).ready(function(){
         }
       }
     }
-    $("#receipt").text("Your Total Cost: $" + totalPrice());
+    $("#textAppend").text("Your Total Cost: $" + totalPrice());
 
     function ingredientsList(){
       $.each($("input:checkbox[name=topping1]:checked"), function(){
@@ -72,15 +73,21 @@ $(document).ready(function(){
       });
       };
 
-    ingredientsList()
+      //list out toppings in receipt
+      function appendDefault(){
+        console.log("hello")
+        for(var i=0;i<defaultToppingsArray.length;i++){
+          $("ul#defaultToppingsReceipt").append("<li>" + defaultToppingsArray[i] + "</li>");
+        }
+        for(var i=0;i<premiumToppingsArray.length;i++){
+          $("ul#premiumToppingsReceipt").append("<li>" + premiumToppingsArray[i] + "</li>")
+          console.log("hello")
+        }
+      }
+    ingredientsList();
+    appendDefault();
 
     console.log(defaultToppingsArray)
 
-    function appendDefault(){
-    for(var i=0;i<defaultToppingsArray.length;i++){
-      $("#defaultToppingsReceipt").append("<li>" + defaultToppingsArray[i] + "</li>")
-      }
-    }
-    appendDefault()
   });
 });

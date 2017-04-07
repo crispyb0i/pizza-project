@@ -12,6 +12,12 @@ $(document).ready(function(){
     var defaultToppingsArray = [];
     var premiumToppingsArray = [];
 
+    var toppingsOne = new defaultTopping(defaultToppingsArray);
+    var toppingsTwo = new premiumTopping(premiumToppingsArray);
+
+
+
+
   //constructor functions
     function defaultTopping(topping) {
       this.topping = topping;
@@ -75,14 +81,18 @@ $(document).ready(function(){
       };
       //list out toppings in receipt
       function appendDefault(){
-        for(var i=0;i<defaultToppingsArray.length;i++){
-          $("ul#defaultToppingsReceipt").append("<li>" + defaultToppingsArray[i] + "</li>");
+        for(var i=0;i<toppingsOne.topping.length;i++){
+          $("ul#defaultToppingsReceipt").append("<li>" + toppingsOne.topping[i] + "</li>");
         }
-        for(var i=0;i<premiumToppingsArray.length;i++){
-          $("ul#premiumToppingsReceipt").append("<li>" + premiumToppingsArray[i] + "</li>")
+        for(var i=0;i<toppingsOne.topping.length;i++){
+          $("ul#premiumToppingsReceipt").append("<li>" + toppingsTwo.topping[i] + "</li>")
         }
       }
+
+
+
     ingredientsList();
     appendDefault();
+    console.log(toppingsOne.topping[0])
   });
 });

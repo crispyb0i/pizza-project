@@ -2,6 +2,7 @@ $(document).ready(function(){
   $("#form").submit(function(event){
     event.preventDefault()
 
+    $("#receipt").show()
     $("ul").empty();
 
     var defaultAmount = 0;
@@ -70,24 +71,18 @@ $(document).ready(function(){
       });
       $.each($("input:checkbox[name=topping2]:checked"), function(){
         premiumToppingsArray.push($(this).val());
-      });
+        });
       };
-
       //list out toppings in receipt
       function appendDefault(){
-        console.log("hello")
         for(var i=0;i<defaultToppingsArray.length;i++){
           $("ul#defaultToppingsReceipt").append("<li>" + defaultToppingsArray[i] + "</li>");
         }
         for(var i=0;i<premiumToppingsArray.length;i++){
           $("ul#premiumToppingsReceipt").append("<li>" + premiumToppingsArray[i] + "</li>")
-          console.log("hello")
         }
       }
     ingredientsList();
     appendDefault();
-
-    console.log(defaultToppingsArray)
-
   });
 });

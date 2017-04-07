@@ -84,15 +84,12 @@ $(document).ready(function(){
         for(var i=0;i<toppingsOne.topping.length;i++){
           $("ul#defaultToppingsReceipt").append("<li>" + toppingsOne.topping[i] + "</li>");
         }
-        for(var i=0;i<toppingsOne.topping.length;i++){
+        for(var i=0;i<toppingsTwo.topping.length;i++){
           $("ul#premiumToppingsReceipt").append("<li>" + toppingsTwo.topping[i] + "</li>")
         }
       }
 
-
-
     ingredientsList();
     appendDefault();
-    console.log(toppingsOne.topping[0])
   });
 });

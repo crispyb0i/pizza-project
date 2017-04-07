@@ -12,7 +12,6 @@ _{
   It takes the values from the checkbox form that are selected
 
   It Calculates the cost based off of what you ordered
-
 }_
 
 ## Setup/Installation Requirements

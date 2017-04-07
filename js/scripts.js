@@ -37,7 +37,7 @@ $(document).ready(function(){
 
     //pricing functions. Accounts for 1 free default topping
     function totalPrice(){
-      if(size["size"]==="Small"){
+      if(size["size"]==="Small ($8)"){
         if(defaultAmount>0){
         totalPizzaCost+=(8+(defaultAmount*2-2)+(premiumAmount*3));
         return totalPizzaCost
@@ -45,7 +45,7 @@ $(document).ready(function(){
         totalPizzaCost+=(8+(defaultAmount*2)+(premiumAmount*3));
         return totalPizzaCost
         }
-      }if(size["size"]==="Medium"){
+      }if(size["size"]==="Medium ($11)"){
         if(defaultAmount>0){
         totalPizzaCost+=(11+(defaultAmount*2-2)+(premiumAmount*3));
         return totalPizzaCost
@@ -53,7 +53,7 @@ $(document).ready(function(){
         totalPizzaCost+=(11+(defaultAmount*2)+(premiumAmount*3));
         return totalPizzaCost
         }
-      }if(size["size"]==="Large"){
+      }if(size["size"]==="Large ($14)"){
         if(defaultAmount>0){
         totalPizzaCost+=(14+(defaultAmount*2-2)+(premiumAmount*3));
         return totalPizzaCost

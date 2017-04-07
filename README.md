@@ -1,4 +1,4 @@
-# _{Ping-Pong}_
+# _{Pizza-Project}_
 
 #### _{A website that calculates the cost of a pizza}, {04/07/2017}_
 
@@ -7,11 +7,11 @@
 ## Description
 
 _{
-  It checks to see what size is selected
+  It checks to see what size is selected for the pizza
 
   It takes the values from the checkbox form that are selected
 
-  It Calculates the cost based off of what you ordered
+  It Calculates the cost based off of the toppings that you select
 }_
 
 ## Setup/Installation Requirements

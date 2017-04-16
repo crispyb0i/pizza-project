@@ -17,6 +17,51 @@ function appendDefault(){
   }
 }
 
+function defaultPush() {
+  $("input:checkbox[name=topping1]:checked").each(function(){
+      defaultToppingsArray.push($(this).val())
+  });
+}
+
+function premiumPush() {
+  $("input:checkbox[name=topping2]:checked").each(function(){
+      premiumToppingsArray.push($(this).val())
+  });
+}
+
+pizza.prototype.price = function() {
+  var total = 0
+  if(size==="Small ($8)"){
+    if(this.defaultTopping.length>0){
+    total+=(8+(this.defaultTopping.length*2-2)+(this.premiumTopping.length*3));
+    return total;
+  }else{
+    total+=(8+(this.defaultTopping.length*2)+(this.premiumTopping.length*3));
+    return total;
+    }
+  }if(size==="Medium ($11)"){
+    if(this.defaultTopping.length>0){
+    total+=(11+(this.defaultTopping.length*2-2)+(this.premiumTopping.length*3));
+    return total;
+  }else{
+    total+=(11+(this.defaultTOpping.length*2)+(this.premiumTopping.length*3));
+    return total;
+    }
+  }if(size==="Large ($14)"){
+    if(this.defaultTopping.length>0){
+    total+=(14+(this.defaultTopping*2-2)+(this.premiumTopping*3));
+    return total;
+  }else{
+    total+=(14+(this.defaultTopping*2)+(this.premiumTopping*3));
+    return total;
+    }
+  }
+}
+
+pizza.prototype.premiumCount = function() {
+  return pizza.premiumTopping.length
+}
+
 $(document).ready(function(){
   $("#form").submit(function(event){
     event.preventDefault();
@@ -28,40 +73,11 @@ $(document).ready(function(){
 
     var size = $("#size").val();
     var newPizza = new pizza(size,defaultToppingsArray,premiumToppingsArray,0);
+    console.log(newPizza.price())
+    $("#textAppend").text("Your Total Cost: $" + newPizza.price());
 
-    pizza.prototype.defaultCount = $("input:checkbox[name=topping1]:checked").each(function(){
-        defaultToppingsArray.push($(this).val())
-      });
-
-    pizza.prototype.premiumCount = $("input:checkbox[name=topping2]:checked").each(function(){
-        premiumToppingsArray.push($(this).val())
-      });
-    //append total cost to receipt
-    if(size==="Small ($8)"){
-      if(newPizza.defaultTopping.length>0){
-      newPizza.totalPizzaCost+=(8+(newPizza.defaultTopping.length*2-2)+(newPizza.premiumTopping.length*3));
-      $("#textAppend").text("Your Total Cost: $" + newPizza.totalPizzaCost);
-    }else{
-      newPizza.totalPizzaCost+=(8+(newPizza.defaultTopping.length*2)+(newPizza.premiumTopping.length*3));
-      $("#textAppend").text("Your Total Cost: $" + newPizza.totalPizzaCost);
-      }
-    }if(size==="Medium ($11)"){
-      if(newPizza.defaultTopping.length>0){
-      newPizza.totalPizzaCost+=(11+(newPizza.defaultTopping.length*2-2)+(newPizza.premiumTopping.length*3));
-      $("#textAppend").text("Your Total Cost: $" + newPizza.totalPizzaCost);
-    }else{
-      newPizza.totalPizzaCost+=(11+(newPizza.defaultTOpping.length*2)+(newPizza.premiumTopping.length*3));
-      $("#textAppend").text("Your Total Cost: $" + newPizza.totalPizzaCost);
-      }
-    }if(size==="Large ($14)"){
-      if(newPizza.defaultTopping.length>0){
-      newPizza.totalPizzaCost+=(14+(newPizza.defaultTopping*2-2)+(newPizza.premiumTopping*3));
-      $("#textAppend").text("Your Total Cost: $" + newPizza.totalPizzaCost);
-    }else{
-      newPizza.totalPizzaCost+=(14+(newPizza.defaultTopping*2)+(newPizza.premiumTopping*3));
-      $("#textAppend").text("Your Total Cost: $" + newPizza.totalPizzaCost);
-      }
-    }
+    defaultPush();
+    premiumPush();
     appendDefault();
   });
 });

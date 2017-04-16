@@ -1,95 +1,79 @@
+function pizza(size,defaultTopping,premiumTopping,totalPizzaCost){
+  this.size = size;
+  this.defaultTopping = defaultTopping;
+  this.premiumTopping = premiumTopping;
+  this.totalPizzaCost = totalPizzaCost;
+}
+
+var defaultToppingsArray = [];
+var premiumToppingsArray = [];
+
+//pricing functions. Accounts for 1 free default topping
+
+
+    //list out toppings in receipt
+    function appendDefault(){
+      for(var i=0;i<defaultToppingsArray.length;i++){
+        $("ul#defaultToppingsReceipt").append("<li>" + defaultToppingsArray[i] + "</li>");
+      }
+      for(var i=0;i<premiumToppingsArray.length;i++){
+        $("ul#premiumToppingsReceipt").append("<li>" + premiumToppingsArray[i] + "</li>")
+      }
+    }
+
+    function totalPrice(){
+      if(this.size==="Small ($8)"){
+        if(newPizza.defaultTopping.length>0){
+        newPizza.totalPizzaCost+=(8+(newPizza.defaultTopping.length*2-2)+(newPizza.premiumTopping.length*3));
+        return newPizza.totalPizzaCost
+      }else{
+        newPizza.totalPizzaCost+=(8+(newPizza.defaultTopping.length*2)+(newPizza.premiumTopping.length*3));
+        return newPizza.totalPizzaCost
+        }
+      }if(this.size==="Medium ($11)"){
+        if(newPizza.defaultTopping.length>0){
+        newPizza.totalPizzaCost+=(11+(newPizza.defaultTopping.length*2-2)+(newPizza.premiumTopping.length*3));
+        return newPizza.totalPizzaCost
+      }else{
+        newPizza.totalPizzaCost+=(11+(newPizza.defaultTOpping.length*2)+(newPizza.premiumTopping.length*3));
+        return newPizza.totalPizzaCost
+        }
+      }if(this.size==="Large ($14)"){
+        if(newPizza.defaultTopping.length>0){
+        newPizza.totalPizzaCost+=(14+(newPizza.defaultTopping*2-2)+(newPizza.premiumTopping*3));
+        return newPizza.totalPizzaCost
+      }else{
+        newPizza.totalPizzaCost+=(14+(newPizza.defaultTopping*2)+(newPizza.premiumTopping*3));
+        return newPizza.totalPizzaCost
+        }
+      }
+    }
+
 $(document).ready(function(){
   $("#form").submit(function(event){
-    event.preventDefault()
+    event.preventDefault();
+
+
+    var size = $("#size").val();
 
     $("#receipt").show()
     $("ul").empty();
 
-    var defaultAmount = 0;
-    var premiumAmount = 0;
-    var totalPizzaCost = 0;
-    var size = new pizzaSize($("#size").val());
-    var defaultToppingsArray = [];
-    var premiumToppingsArray = [];
-
-    var toppingsOne = new defaultTopping(defaultToppingsArray);
-    var toppingsTwo = new premiumTopping(premiumToppingsArray);
-
-
-
-
-  //constructor functions
-    function defaultTopping(topping) {
-      this.topping = topping;
-    }
-
-    function premiumTopping(topping) {
-      this.topping = topping;
-    }
-
-    function pizzaSize(size){
-      this.size = size
-    }
-
-
-  //prototype functions
-    defaultTopping.prototype.defaultCount = $("input:checkbox[name=topping1]:checked").each(function(topping){
-        defaultAmount+=1;
+    //prototype functions
+    pizza.prototype.defaultCount = $("input:checkbox[name=topping1]:checked").each(function(){
+        defaultToppingsArray.push($(this).val())
       });
 
-    premiumTopping.prototype.premiumCount = $("input:checkbox[name=topping2]:checked").each(function(){
-        premiumAmount+=1;
+    pizza.prototype.premiumCount = $("input:checkbox[name=topping2]:checked").each(function(){
+        premiumToppingsArray.push($(this).val())
       });
 
-    //pricing functions. Accounts for 1 free default topping
-    function totalPrice(){
-      if(size["size"]==="Small ($8)"){
-        if(defaultAmount>0){
-        totalPizzaCost+=(8+(defaultAmount*2-2)+(premiumAmount*3));
-        return totalPizzaCost
-      }else{
-        totalPizzaCost+=(8+(defaultAmount*2)+(premiumAmount*3));
-        return totalPizzaCost
-        }
-      }if(size["size"]==="Medium ($11)"){
-        if(defaultAmount>0){
-        totalPizzaCost+=(11+(defaultAmount*2-2)+(premiumAmount*3));
-        return totalPizzaCost
-      }else{
-        totalPizzaCost+=(11+(defaultAmount*2)+(premiumAmount*3));
-        return totalPizzaCost
-        }
-      }if(size["size"]==="Large ($14)"){
-        if(defaultAmount>0){
-        totalPizzaCost+=(14+(defaultAmount*2-2)+(premiumAmount*3));
-        return totalPizzaCost
-      }else{
-        totalPizzaCost+=(14+(defaultAmount*2)+(premiumAmount*3));
-        return totalPizzaCost
-        }
-      }
-    }
-    $("#textAppend").text("Your Total Cost: $" + totalPrice());
+      totalPrice();
 
-    function ingredientsList(){
-      $.each($("input:checkbox[name=topping1]:checked"), function(){
-        defaultToppingsArray.push($(this).val());
-      });
-      $.each($("input:checkbox[name=topping2]:checked"), function(){
-        premiumToppingsArray.push($(this).val());
-        });
-      };
-      //list out toppings in receipt
-      function appendDefault(){
-        for(var i=0;i<toppingsOne.topping.length;i++){
-          $("ul#defaultToppingsReceipt").append("<li>" + toppingsOne.topping[i] + "</li>");
-        }
-        for(var i=0;i<toppingsTwo.topping.length;i++){
-          $("ul#premiumToppingsReceipt").append("<li>" + toppingsTwo.topping[i] + "</li>")
-        }
-      }
+      var newPizza = new pizza(size,defaultToppingsArray,premiumToppingsArray,totalPrice());
+      console.log(newPizza.totalPizzaCost);
 
-    ingredientsList();
+    $("#textAppend").text("Your Total Cost: $" + newPizza.totalPizzaCost);
     appendDefault();
   });
 });

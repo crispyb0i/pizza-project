@@ -1,18 +1,31 @@
-# _{Pizza-Project}_
+# Pizza-Project
 
-#### _{A website that calculates the cost of a pizza}, {04/07/2017}_
+#### A website that calculates the cost of a pizza, 04/07/2017
 
-#### By _**{David Shin}**_
+#### By David Shin
 
 ## Description
 
-_{
-  It checks to see what size is selected for the pizza
+  *It checks to see what size is selected for the pizza
 
-  It takes the values from the checkbox form that are selected
+  *It takes the values from the checkbox form that are selected
 
-  It Calculates the cost based off of the toppings that you select
-}_
+  *It Calculates the cost based off of the toppings that you select
+
+
+## Specifications
+* Output price for a single, small pizza
+  * _Example Input:_ Small, no toppings
+  * _Example Output:_ $8
+* Increase price by $2 for each additional standard topping (first topping is free)
+  * _Example Input:_ Small, pepperoni, ham
+  * _Example Output:_ $10
+* Increase price by $3 for each additional premium topping
+  * _Example Input:_ Small, Broccoli, Beef, Kangaroo
+  * _Example Output:_ $13
+* Increase price by $3 for each level of size increase
+  * _Example Input:_ Medium, no toppings
+  * _Example Output:_ $11
 
 ## Setup/Installation Requirements
 
